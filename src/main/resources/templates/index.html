@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>BOOK SEARCH</h1>
+    <td></td>
+    <td></td>
+    <form 
+        action="#"
+        th:action="@{/searchResults}" 
+        th:object="${query}" 
+        method="post"
+        > 
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Book Title:</label>
+            <input type="text" th:name="title" class="form-control" placeholder="Book Title">
+          </div>
+          <td></td>
+          <td></td>
+          <div class="form-group col-md-4">
+            <label>Number of results</label>
+            <select th:name="limit" class="form-control">
+              <option selected>Choose...</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+        <td></td>
+        <td></td>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    
+</body>
+</html>
