@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.json.Json;
@@ -20,12 +21,22 @@ import vttp2022.day21.day21.models.Query;
 import vttp2022.day21.day21.repositories.BookRepository;
 
 @Controller
+@RequestMapping(path ="/search")
 public class MainController {
 
     @Autowired
     private BookRepository bookRepo;
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
+    //GET /search?bookName=drew&resultCount=10
+    // @GetMapping
+    // public String search(@RequestParam String title, @RequestParam Integer limit, Model model) {
+    //     //Populate model with the binding
+    //     model.addAttribute("title", title);
+    //     model.addAttribute("limit", limit);
+    //     return "result";
+    // } 
 
     @GetMapping("/") 
     public String home(Model model) {
@@ -41,7 +52,7 @@ public class MainController {
          //Query the db for books
          title =query.getTitle();
          limit = query.getLimit();
-         title = '%' + title + '%';
+         //title = '%' + title + '%';
          List<Book> books = bookRepo.getBooksByTitle(title, limit);
         
          // Build the result
@@ -52,6 +63,7 @@ public class MainController {
          JsonArray result = arrBuilder.build();
 
          model.addAttribute("books", books);
+         model.addAttribute("hasResult", books.size()>0);
         return "result";
 
     }

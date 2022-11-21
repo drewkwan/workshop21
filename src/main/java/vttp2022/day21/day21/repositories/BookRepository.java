@@ -37,7 +37,7 @@ public class BookRepository {
     public List<Book> getBooksByTitle(String title, int limit) {
         
         //Perform the query
-        final SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_SELECT_BOOKS_BY_NAME, title, limit);
+        final SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_SELECT_BOOKS_BY_NAME, "%%%s%%".formatted(title), limit);
 
         final List<Book> books = new LinkedList<>();
         while (rs.next()) {

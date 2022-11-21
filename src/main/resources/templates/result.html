@@ -7,6 +7,11 @@
     <title>Book Search</title>
 </head>
 <body>
+    <!-- <h1>Your search string <span data-th-text=${title}></span></h1> 
+
+    <h2>Number of books returned <span data-th-text=${limit}></span></h2> -->
+    <h3 data-th-if="!hasResult">You search produces no results</h3>
+
     <div th:each= "book:${books}">
         <label>Book title: </label><tr th:text="${book.getTitle()}"></tr>
         <br>
@@ -17,5 +22,7 @@
         <img th:src="@{${book.getImageUrl()}}" alt="">
         <br>
         <br>
+
 </body>
+<h4>Search <a href="/">again</a></h4>
 </html>
